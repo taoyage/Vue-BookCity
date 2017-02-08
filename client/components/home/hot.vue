@@ -4,33 +4,14 @@
             <h2>本周最火</h2>
         </div>
         <ul class="book-table">
-            <li>
+            <li v-for="(item,index) in HotData" v-if="index < 6">
                 <div class="u-book">
                     <div class="book-cover">
-                        <img src="../../assets/img/recommend.jpg">
-                        <div class="u-tagRT free-fiction"></div>
-                    </div>
-                    <div class="book-info"></div>
-                </div>
-            </li>
-            <li>
-                <div class="u-book">
-                    <div class="book-cover">
-                        <img src="../../assets/img/recommend.jpg">
-                        <div class="free-fiction"></div>
+                        <img v-bind:src="item.cover">
                     </div>
                     <div class="book-info">
-                        <h3 class="title">书籍名称</h3>
+                        <h3 class="title">{{item.title}}</h3>
                     </div>
-                </div>
-            </li>
-            <li>
-                <div class="u-book">
-                    <div class="book-cover">
-                        <img src="../../assets/img/recommend.jpg">
-                        <div class="free-fiction"></div>
-                    </div>
-                    <div class="book-info"></div>
                 </div>
             </li>
         </ul>
@@ -39,7 +20,7 @@
 </template>
 <script>
     export default {
-        name: 'hot'
+        props: ['HotData']
     };
 </script>
 <style scoped>

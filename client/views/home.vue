@@ -2,11 +2,11 @@
     <div>
         <app-header></app-header>
         <app-top></app-top>
-        <app-hot></app-hot>
-        <app-recommend></app-recommend>
-        <app-female></app-female>
-        <app-male></app-male>
-        <app-free></app-free>
+        <app-hot :HotData="HotData"></app-hot>
+        <app-recommend :RecommendData="RecommendData"></app-recommend>
+        <app-female :FemaleData="FemaleData"></app-female>
+        <app-male :MaleData="MaleData"></app-male>
+        <app-free :FreeData="FreeData"></app-free>
     </div>
 </template>
 <script>
@@ -30,20 +30,26 @@
         },
         data() {
             return {
-                hot: {},
-                recommend: {}
+                HotData: {},
+                RecommendData: {},
+                FemaleData: {},
+                MaleData: {},
+                FreeData: {}
             }
         },
         created() {
             this.$http.get('http://localhost:3000/api/home').then((response) => {
                 let datas = JSON.parse(response.body);
-                this.hot = datas.items[1].data.data;
-                this.recommend = datas.items[2].data.data;
+                this.HotData = datas.items[1].data.data;
+                this.RecommendData = datas.items[2].data.data;
+                this.FemaleData = datas.items[3].data.data;
+                this.MaleData = datas.items[4].data.data;
+                this.FreeData = datas.items[5].data.data;
             }, response => {
                 console.log(err);
             });
         }
-    }
+    };
 </script>
 <style type="text/css">
 

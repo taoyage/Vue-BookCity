@@ -4,40 +4,26 @@
             <h2>限时免费</h2>
         </div>
         <ul class="book-table">
-            <li>
+            <li v-for="(item,index) in FreeData" v-if="index < 6">
                 <div class="u-book">
                     <div class="book-cover">
-                        <img src="../../assets/img/recommend.jpg">
+                        <img v-bind:src="item.data.cover">
                         <div class="u-tagRT free-fiction"></div>
                     </div>
-                    <div class="book-info"></div>
-                </div>
-            </li>
-            <li>
-                <div class="u-book">
-                    <div class="book-cover">
-                        <img src="../../assets/img/recommend.jpg">
-                        <div class="free-fiction"></div>
-                    </div>
                     <div class="book-info">
-                        <h3 class="title">aa</h3>
+                        <h3 class="title">{{item.ad_name}}</h3>
                     </div>
-                </div>
-            </li>
-            <li>
-                <div class="u-book">
-                    <div class="book-cover">
-                        <img src="../../assets/img/recommend.jpg">
-                        <div class="free-fiction"></div>
-                    </div>
-                    <div class="book-info"></div>
                 </div>
             </li>
         </ul>
         <a class="channel-group__footer" href="/free">查看更多&gt;&gt;</a>
     </section>
 </template>
-
+<script>
+    export default{
+        props:['FreeData']
+    }
+</script>
 <style scoped>
     .channel-group {
         position: relative;

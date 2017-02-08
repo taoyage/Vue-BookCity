@@ -7,62 +7,19 @@
         </div>
         <div>
             <ul class="list-h5">
-                <li>
+                <li v-for="(item,index) in FemaleData" v-if="index<5">
                     <div class="book-h5">
                         <div class="book-h5__cover">
-                            <img src="../../assets/img/recommend.jpg">
-                            <p class="book-h5__finish">完结</p>
+                            <img v-bind:src="item.cover">
+                            <p class="book-h5__finish" v-if="item.finish">完结</p>
+                            <p class="book-h5__finish" v-else>未完结</p>
                         </div>
                         <div class="book-h5__info">
-                            <p class="book-h5__title">我的千年僵尸女友</p>
-                            <p class="book-h5__author">天台迷雾</p>
-                            <p class="book-h5__summary">
-                                我五岁时在深山中迷路，改变了我的人生。 十多年后，我亲手挖出了自己的僵尸媳妇，人尸搭配，干活不累。杀
-                            </p>
+                            <p class="book-h5__title">{{item.title}}</p>
+                            <p class="book-h5__author">{{item.author}}</p>
+                            <p class="book-h5__summary">{{item.summary}}</p>
                             <div class="book-h5__wrap">
-                                <div class="book-h5__tag">灵异鬼怪</div>
-                                <div class="book-h5__tag">灵异</div>
-                                <div class="book-h5__tag">226万字</div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="book-h5">
-                        <div class="book-h5__cover">
-                            <img src="../../assets/img/recommend.jpg">
-                            <p class="book-h5__finish">完结</p>
-                        </div>
-                        <div class="book-h5__info">
-                            <p class="book-h5__title">我的千年僵尸女友</p>
-                            <p class="book-h5__author">天台迷雾</p>
-                            <p class="book-h5__summary">
-                                我五岁时在深山中迷路，改变了我的人生。 十多年后，我亲手挖出了自己的僵尸媳妇，人尸搭配，干活不累。杀
-                            </p>
-                            <div class="book-h5__wrap">
-                                <div class="book-h5__tag">灵异鬼怪</div>
-                                <div class="book-h5__tag">灵异</div>
-                                <div class="book-h5__tag">226万字</div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="book-h5">
-                        <div class="book-h5__cover">
-                            <img src="../../assets/img/recommend.jpg">
-                            <p class="book-h5__finish">完结</p>
-                        </div>
-                        <div class="book-h5__info">
-                            <p class="book-h5__title">我的千年僵尸女友</p>
-                            <p class="book-h5__author">天台迷雾</p>
-                            <p class="book-h5__summary">
-                                我五岁时在深山中迷路，改变了我的人生。 十多年后，我亲手挖出了自己的僵尸媳妇，人尸搭配，干活不累。杀
-                            </p>
-                            <div class="book-h5__wrap">
-                                <div class="book-h5__tag">灵异鬼怪</div>
-                                <div class="book-h5__tag">灵异</div>
-                                <div class="book-h5__tag">226万字</div>
+                                <div class="book-h5__tag" v-for="(tags,index) in item.tags" v-if="index < 3">{{tags}}</div>
                             </div>
                         </div>
                     </div>
@@ -71,11 +28,14 @@
         </div>
         <div class="channel-h5__footer_next">
             <a href="javascript:">换一换</a>
-            <a href="/male">男生频道>></a>
+            <a href="/male">女生频道>></a>
         </div>
     </section>
 </template>
 <script>
+    export default{
+        props:['FemaleData']
+    }
 </script>
 <style type="text/css">
     .channel-h5 {

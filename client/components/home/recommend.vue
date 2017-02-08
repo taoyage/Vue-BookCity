@@ -11,43 +11,31 @@
         </div>
         <div>
             <ul class="list-h5">
-                <li>
+                <li v-for="(item,index) in RecommendData" v-if="index === 0">
                     <div class="book-h5">
                         <div class="book-h5__cover">
-                            <img alt="title" src="../../assets/img/recommend.jpg">
-                            <p class="book-h5__finish">完结</p>
+                            <img alt="title" v-bind:src="item.cover">
+                            <p class="book-h5__finish" v-if="item.finish">完结</p>
+                            <p class="book-h5__finish" v-else>未完结</p>
                         </div>
                         <div class="book-h5__info">
-                            <p class="book-h5__title">title</p>
-                            <p class="book-h5__author">authors</p>
-                            <p class="book-h5__summary">summary</p>
+                            <p class="book-h5__title">{{item.title}}</p>
+                            <p class="book-h5__author">{{item.authors}}</p>
+                            <p class="book-h5__summary">{{item.summary}}</p>
                             <div class="book-h5__wrap">
-                                <div class="book-h5__tag"></div>
+                                <div class="book-h5__tag" v-for="tags in item.tags">{{tags}}</div>
                             </div>
                         </div>
                     </div>
                 </li>
-                <li>
+                <li v-for="(item,index) in RecommendData" v-if="index > 0 && index < 5">
                     <div class="book-h5 book-h5__no-img">
-                        <span class="book-h5_no-img__order">01</span>
+                        <span class="book-h5_no-img__order">0{{index + 1}}</span>
                         <div class="book-h5_no-img__info">
                             <p class="book-h5_no-img__title">
-                                title
+                                {{item.title}}
                                 <i class="book-h5_no-img__author">
-                            <span class="author">authors</span>
-                        </i>
-                            </p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="book-h5 book-h5__no-img">
-                        <span class="book-h5_no-img__order">01</span>
-                        <div class="book-h5_no-img__info">
-                            <p class="book-h5_no-img__title">
-                                title
-                                <i class="book-h5_no-img__author">
-                            <span class="author">authors</span>
+                            <span class="author">{{item.authors}}</span>
                         </i>
                             </p>
                         </div>
@@ -62,7 +50,7 @@
 </template>
 <script>
     export default {
-        name: 'recommend'
+       props:['RecommendData']
     }
 </script>
 <style scoped>
