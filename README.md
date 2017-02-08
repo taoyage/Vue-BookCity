@@ -4,14 +4,20 @@
 
 ## Run it
 
-# install dependencies
+### install dependencies
+```
+npm install
+```
 
-`npm install`
+### Server Side 
+```
+npm start
+```
 
-# Server Side 
-`npm start`
+### Client Side
+```
+npm run dev
+```
 
-# Client Side
-`npm run dev`
 visit http://localhost:8080 in browser
 
