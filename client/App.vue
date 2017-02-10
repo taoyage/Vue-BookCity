@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <router-view></router-view>
+        <router-view keep-alive></router-view>
     </div>
 </template>
 <script>
@@ -8,3 +8,8 @@
         name: 'app',
     }
 </script>
+<style>
+	#app{
+		height:100%;
+	}
+</style>

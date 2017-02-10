@@ -37,7 +37,7 @@
         props:["MaleData"]
     }
 </script>
-<style type="text/css">
+<style scoped>
     .channel-h5 {
         background: #fff;
         border-bottom: 10px solid #f5f5f5;
