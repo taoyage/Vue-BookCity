@@ -34,7 +34,6 @@
             created() {
                 this.$http.get("http://localhost:3000/api/home/bookrack").then((response) => {
                     this.bookrack = response.body.items;
-                    console.log(response.body.items)
                 })
             }
     }

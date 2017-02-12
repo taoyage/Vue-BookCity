@@ -31,14 +31,14 @@
     </div>
 </template>
 <script>
-    import search from 'components/home/search';
-    import top from 'components/home/top';
-    import hot from 'components/home/hot';
-    import recommend from 'components/home/recommend';
-    import female from 'components/home/female';
-    import male from 'components/home/male';
-    import free from 'components/home/free';
-    import bookrack from 'components/home/bookrack';
+    import search from 'components/search';
+    import top from 'components/top';
+    import hot from 'components/hot';
+    import recommend from 'components/recommend';
+    import female from 'components/female';
+    import male from 'components/male';
+    import free from 'components/free';
+    import bookrack from 'components/bookrack';
 
     export default {
         components: {

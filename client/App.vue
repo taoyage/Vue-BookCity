@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <router-view keep-alive></router-view>
+            <router-view keep-alive></router-view>
     </div>
 </template>
 <script>
@@ -9,7 +9,8 @@
     }
 </script>
 <style>
-	#app{
-		height:100%;
-	}
+    #app {
+        height: 100%;
+    }
+    
 </style>
