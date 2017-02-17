@@ -1,16 +1,16 @@
 <template>
-    <div :style="{width:screen_width +'px',overflow:'hidden',height:'100%'}">
+    <div :style="wrapStyle" @touchend="moveEnd" @touchstart="moveStart" @touchmove="move">
         <section class="header-tab" id="app_header">
             <div class="Swipe-tab Swipe-tab_2 f-cb">
                 <a href="javascript:" :class="{SwipeTab__on:isActive1}" @click="tabSwich(0)"></a>
                 <a href="javascript:" :class="{SwipeTab__on:isActive2}" @click="tabSwich(1)"></router-link>
-                    <i :style="{width:'50%',transitionDuration:'.3s',transform:'translate3d('+ header_tab +'%,0px,0px)'}"></i>
+                    <i :style="underlineStyle"></i>
             </div>
             <em class="header-user"></em>
             <em class="header-checkin"></em>
         </section>
-        <div v-bind:style="{width:screen_width * 2 + 'px',transitionDuration:'.3s',transform:'translate3d('+ position + 'px,0px,0px)',height:'100%'}">
-            <div class="container-warp" :style="{width:screen_width+'px',float:'left'}">
+        <div :style="contentWrapStyle">
+            <div class="container-wrap" :style="containerWrapStyle">
                 <div class="container-scroll">
                     <home-search></home-search>
                     <home-top></home-top>
@@ -19,9 +19,10 @@
                     <home-female :FemaleData="FemaleData"></home-female>
                     <home-male :MaleData="MaleData"></home-male>
                     <home-free :FreeData="FreeData"></home-free>
+                    <home-listMore :MaleData="MaleData"></home-listMore>
                 </div>
             </div>
-            <div class="container-warp" :style="{width:screen_width+'px',float:'left'}">
+            <div class="container-wrap" :style="containerWrapStyle">
                 <div class="container-scroll">
                     <home-search></home-search>
                     <home-bookrack></home-bookrack>
@@ -31,7 +32,7 @@
     </div>
 </template>
 <script>
-    import search from 'components/search';
+    import search from 'components/home_search';
     import top from 'components/home_top';
     import hot from 'components/home_hot';
     import recommend from 'components/home_recommend';
@@ -39,6 +40,7 @@
     import male from 'components/home_male';
     import free from 'components/home_free';
     import bookrack from 'components/home_bookrack';
+    import listMore from 'components/home_listMore';
 
     export default {
         components: {
@@ -49,7 +51,8 @@
             'home-female': female,
             'home-male': male,
             'home-free': free,
-            'home-bookrack': bookrack
+            'home-bookrack': bookrack,
+            'home-listMore': listMore
         },
         data() {
             return {
@@ -61,7 +64,9 @@
                 position: 0,
                 isActive1: true,
                 isActive2: false,
-                header_tab: 0
+                header_tab: 0,
+                coordinateX: 0,
+                distance: 0
             }
         },
         created() {
@@ -79,7 +84,7 @@
         methods: {
             tabSwich() {
                 if (arguments[0]) {
-                    this.position = -this.screen_width;
+                    this.position = -window.screen.width;
                     this.isActive1 = false;
                     this.isActive2 = true;
                     this.header_tab = 100;
@@ -89,11 +94,63 @@
                     this.isActive2 = false;
                     this.header_tab = 0;
                 }
+            },
+            moveStart(event) {
+                this.coordinateX = event.touches[0].clientX;
+            },
+            move(event) {
+                this.distance = event.touches[0].clientX - this.coordinateX;
+                this.header_tab = Math.abs(1 / window.screen.width * this.position) * 100;
+                if (this.distance < 0 && this.position < window.screen.width && this.position > -window.screen.width) {
+                    this.position = this.distance;
+                }
+                if (this.distance > 0 && this.position < 0) {
+                    this.position = -(window.screen.width - this.distance);
+                }
+            },
+            moveEnd(event) {
+                let x = Math.abs(this.position) - (window.screen.width / 2);
+                if (x > 0) {
+                    this.position = -window.screen.width;
+                    this.header_tab = 100;
+                    this.isActive2 = true;
+                    this.isActive1 = false;
+                } else {
+                    this.position = 0;
+                    this.header_tab = 0;
+                    this.isActive1 = true;
+                    this.isActive2 = false;
+                }
             }
         },
         computed: {
-            screen_width() {
-                return window.screen.width;
+            wrapStyle() {
+                return {
+                    width: `${window.screen.width}px`,
+                    overflow: `hidden`,
+                    height: `100%`
+                }
+            },
+            underlineStyle() {
+                return {
+                    width: `50%`,
+                    transitionDuration: `.3s`,
+                    transform: `translate3d(${this.header_tab}%,0px,0px)`,
+                }
+            },
+            contentWrapStyle() {
+                return {
+                    width: `${window.screen.width * 2}px`,
+                    transitionDuration: `.3s`,
+                    transform: `translate3d(${this.position}px,0px,0px)`,
+                    height: `100%`
+                }
+            },
+            containerWrapStyle() {
+                return {
+                    width: `${window.screen.width}px`,
+                    float: `left`
+                }
             }
         }
     };
@@ -186,7 +243,7 @@
         color: #ff6600;
     }
     
-    .container-warp {
+    .container-wrap {
         height: 100%;
         overflow: hidden;
         position: relative;
