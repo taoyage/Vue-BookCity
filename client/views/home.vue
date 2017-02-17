@@ -12,19 +12,19 @@
         <div v-bind:style="{width:screen_width * 2 + 'px',transitionDuration:'.3s',transform:'translate3d('+ position + 'px,0px,0px)',height:'100%'}">
             <div class="container-warp" :style="{width:screen_width+'px',float:'left'}">
                 <div class="container-scroll">
-                    <app-search></app-search>
-                    <app-top></app-top>
-                    <app-hot :HotData="HotData"></app-hot>
-                    <app-recommend :RecommendData="RecommendData"></app-recommend>
-                    <app-female :FemaleData="FemaleData"></app-female>
-                    <app-male :MaleData="MaleData"></app-male>
-                    <app-free :FreeData="FreeData"></app-free>
+                    <home-search></home-search>
+                    <home-top></home-top>
+                    <home-hot :HotData="HotData"></home-hot>
+                    <home-recommend :RecommendData="RecommendData"></home-recommend>
+                    <home-female :FemaleData="FemaleData"></home-female>
+                    <home-male :MaleData="MaleData"></home-male>
+                    <home-free :FreeData="FreeData"></home-free>
                 </div>
             </div>
             <div class="container-warp" :style="{width:screen_width+'px',float:'left'}">
                 <div class="container-scroll">
-                    <app-search></app-search>
-                    <app-bookrack></app-bookrack>
+                    <home-search></home-search>
+                    <home-bookrack></home-bookrack>
                 </div>
             </div>
         </div>
@@ -32,24 +32,24 @@
 </template>
 <script>
     import search from 'components/search';
-    import top from 'components/top';
-    import hot from 'components/hot';
-    import recommend from 'components/recommend';
-    import female from 'components/female';
-    import male from 'components/male';
-    import free from 'components/free';
-    import bookrack from 'components/bookrack';
+    import top from 'components/home_top';
+    import hot from 'components/home_hot';
+    import recommend from 'components/home_recommend';
+    import female from 'components/home_female';
+    import male from 'components/home_male';
+    import free from 'components/home_free';
+    import bookrack from 'components/home_bookrack';
 
     export default {
         components: {
-            'app-search': search,
-            'app-top': top,
-            'app-hot': hot,
-            'app-recommend': recommend,
-            'app-female': female,
-            'app-male': male,
-            'app-free': free,
-            'app-bookrack': bookrack
+            'home-search': search,
+            'home-top': top,
+            'home-hot': hot,
+            'home-recommend': recommend,
+            'home-female': female,
+            'home-male': male,
+            'home-free': free,
+            'home-bookrack': bookrack
         },
         data() {
             return {

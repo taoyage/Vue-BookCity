@@ -33,66 +33,66 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <router-link to="rank">
                     <img class="top-home__icon" src="../assets/img/ranking.png">
                     <p>排行</p>
-                </a>
+                </router-link>
             </li>
         </ul>
     </section>
 </template>
 <script>
     export default {
-        data(){
-            return {
-                move : 0,
-                imgUrl:[
-                    'http://image.read.duokan.com/mfsv2/download/fdsc3/p01qDSHWUGqf/DoSt6VIaNe0oC2.jpg',
-                    'http://t1.market.xiaomi.com/thumbnail/jpeg/l640/Duokan/09da548fc77b20d162615235590cb6fbcea4250b8?',
-                    'http://image.read.duokan.com/mfsv2/download/fdsc3/p01efTou81ww/XRyLxQX8aCBCJ1.jpg',
-                    'http://image.read.duokan.com/mfsv2/download/fdsc3/p01qDSHWUGqf/DoSt6VIaNe0oC2.jpg'
-                ]
-            }
-        },
-        mounted() {
-             let el = this.$refs.bannerWrap;
-             let length = el.getElementsByTagName('a').length;
-             this.move = window.screen.width;  
-             setInterval(()=>{
-                this.slider(el,length);
-             },10000);
-        },
-        methods: {
-            slider(el,length){
-                el.style.transitionDuration = `.3s`;
-                el.style.transform = `translate3d(${-this.move}px, 0px, 0px)`;
-                if(this.move === parseInt(window.screen.width * length)){
-                    el.style.transitionDuration = `.0s`;
-                    this.move = 0;
-                    el.style.transform = `translate3d(${-this.move}px, 0px, 0px)`;
-                }
-                this.move += window.screen.width;
-            }
-        },
-        computed:{
-            sliderStyle(){
+        data() {
                 return {
-                    width:`${window.screen.width}px`
-                };
-            },
-            bannerStyle(){
-                return{
-                    width:`${window.screen.width}px`
+                    move: 0,
+                    imgUrl: [
+                        'http://image.read.duokan.com/mfsv2/download/fdsc3/p01qDSHWUGqf/DoSt6VIaNe0oC2.jpg',
+                        'http://t1.market.xiaomi.com/thumbnail/jpeg/l640/Duokan/09da548fc77b20d162615235590cb6fbcea4250b8?',
+                        'http://image.read.duokan.com/mfsv2/download/fdsc3/p01efTou81ww/XRyLxQX8aCBCJ1.jpg',
+                        'http://image.read.duokan.com/mfsv2/download/fdsc3/p01qDSHWUGqf/DoSt6VIaNe0oC2.jpg'
+                    ]
                 }
             },
-            bannerWrapStyle(){
-                return{
-                    width:`${window.screen.width*5}px`,
-                    transitionDuration:`0s`,
-                    transform:`translate3d(0px,0px,0px)`
+            mounted() {
+                let el = this.$refs.bannerWrap;
+                let length = el.getElementsByTagName('a').length;
+                this.move = window.screen.width;
+                setInterval(() => {
+                    this.slider(el, length);
+                }, 10000);
+            },
+            methods: {
+                slider(el, length) {
+                    el.style.transitionDuration = `.3s`;
+                    el.style.transform = `translate3d(${-this.move}px, 0px, 0px)`;
+                    if (this.move === parseInt(window.screen.width * length)) {
+                        el.style.transitionDuration = `.0s`;
+                        this.move = 0;
+                        el.style.transform = `translate3d(${-this.move}px, 0px, 0px)`;
+                    }
+                    this.move += window.screen.width;
+                }
+            },
+            computed: {
+                sliderStyle() {
+                    return {
+                        width: `${window.screen.width}px`
+                    };
+                },
+                bannerStyle() {
+                    return {
+                        width: `${window.screen.width}px`
+                    }
+                },
+                bannerWrapStyle() {
+                    return {
+                        width: `${window.screen.width*5}px`,
+                        transitionDuration: `0s`,
+                        transform: `translate3d(0px,0px,0px)`
+                    }
                 }
             }
-        }
 
     }
 </script>
@@ -106,10 +106,10 @@
         overflow: hidden;
         position: relative;
     }
-
-    .banner-wrap{
+    
+    .banner-wrap {
         overflow: hidden;
-        transition-duration:0s;
+        transition-duration: 0s;
     }
     
     .banner-wrap a {

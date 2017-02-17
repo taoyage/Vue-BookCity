@@ -1,15 +1,20 @@
 <template>
     <section class="top">
-        <a class="top__back" href="javascript:"></a>
+        <a class="top__back" href="javascript:" @click="back"></a>
         <span class="top__title">{{title}}</span>
-        <a class="header-home" href="javascript:"></a>
+        <router-link to="/" class="header-home"></router-link>
     </section>
 </template>
 <script>
     export default {
-        props:{
-            title:{
-                type:String
+        props: {
+            title: {
+                type: String
+            }
+        },
+        methods:{
+            back(){
+                history.go(-1);
             }
         }
     }
